@@ -1,0 +1,45 @@
+/*
+ * Copyright (c) 2020 The ZMK Contributors
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <behaviors.dtsi>
+#include <dt-bindings/zmk/bt.h>
+#include <dt-bindings/zmk/outputs.h>
+#include <dt-bindings/zmk/rgb.h>
+#include <dt-bindings/zmk/keys.h>
+
+&encoder_4 {
+    status = "okay";
+};
+
+/ {
+    keymap {
+        compatible = "zmk,keymap";
+        
+        default_layer {
+            bindings = <
+                                &tog 1          &kp KP_NUMLOCK  &kp KP_SLASH
+                &kp KP_NUMBER_7 &kp KP_NUMBER_8 &kp KP_NUMBER_9 &kp KP_ASTERISK
+                &kp KP_NUMBER_4 &kp KP_NUMBER_5 &kp KP_NUMBER_6 &kp KP_MINUS
+                &kp KP_NUMBER_1 &kp KP_NUMBER_2 &kp KP_NUMBER_3 &kp KP_PLUS
+                &none           &kp KP_NUMBER_0 &kp KP_DOT      &kp KP_ENTER
+            >;
+
+            sensor-bindings = <&inc_dec_kp K_VOLUME_UP K_VOLUME_DOWN>;
+        };
+
+         func_layer {
+             bindings = <
+                      &tog 0          &bootloader &reset
+                &none &bt BT_CLR_CMD  &none       &out OUT_TOG
+                &none &bt BT_NXT_CMD &none       &out OUT_BLE
+                &none &bt BT_PRV_CMD  &none       &out OUT_USB
+                &none &bt BT_SEL_CMD  &none       &none
+             >;
+
+            sensor-bindings = <&inc_dec_kp K_VOLUME_UP K_VOLUME_DOWN>;
+         };
+    };
+};
